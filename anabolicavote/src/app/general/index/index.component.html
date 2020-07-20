@@ -3,35 +3,14 @@
         Voer code in om te beginnen stemmen
     </mat-card-title>
     <mat-card-content>
-        <mat-form-field appearance="outline">
-            <mat-icon matPrefix>vpn_key</mat-icon>
-            <mat-label>Code</mat-label>
-            <input matInput placeholder="A123">
-        </mat-form-field><br>
-        <button mat-raised-button type="submit">Start</button>
-    </mat-card-content>
-</mat-card>
-<mat-card>
-    <mat-card-title>
-        Stemrecht aanvragen
-    </mat-card-title>
-    <mat-card-content>
-        <mat-form-field appearance="outline">
-            <mat-icon matPrefix>history_edu</mat-icon>
-            <mat-label>Volledige naam</mat-label>
-            <input matInput placeholder="Voornaam Naam">
-        </mat-form-field><br>
-        <mat-form-field appearance="outline">
-            <mat-icon matPrefix>email</mat-icon>
-            <mat-label>E-mail</mat-label>
-            <input matInput type="email" placeholder="naam.voornaam@gmail.com">
-        </mat-form-field><br>
-        <mat-form-field appearance="outline">
-            <mat-icon matPrefix>vpn_key</mat-icon>
-            <mat-label>Aanvraagcode</mat-label>
-            <input matInput placeholder="A123">
-        </mat-form-field><br>
-        <button mat-raised-button type="submit">Aanvraag verzenden</button>
+        <form [formGroup]="codeFormGroup">
+            <mat-form-field appearance="outline">
+                <mat-icon matPrefix>vpn_key</mat-icon>
+                <mat-label>Code</mat-label>
+                <input matInput placeholder="A123" formControlName="codeCtrl">
+            </mat-form-field><br>
+            <button mat-raised-button type="submit" (click)="verifyCode()">Start</button>
+        </form>
     </mat-card-content>
 </mat-card>
 <mat-card>
@@ -39,19 +18,21 @@
         Inloggen als beheerder
     </mat-card-title>
     <mat-card-content>
-        <mat-form-field appearance="outline">
-            <mat-icon matPrefix>person</mat-icon>
-            <mat-label>Gebruikersnaam</mat-label>
-            <input matInput placeholder="Jos">
-        </mat-form-field><br>
-        <mat-form-field appearance="outline">
-            <mat-icon matPrefix>lock</mat-icon>
-            <mat-label>Wachtwoord</mat-label>
-            <input matInput type="password" placeholder="">
-        </mat-form-field><br>
-        <button mat-raised-button type="submit">Inloggen</button>
+        <form [formGroup]="loginFormGroup">
+            <mat-form-field appearance="outline">
+                <mat-icon matPrefix>person</mat-icon>
+                <mat-label>Gebruikersnaam</mat-label>
+                <input matInput placeholder="Jos" formControlName="usernameCtrl">
+            </mat-form-field><br>
+            <mat-form-field appearance="outline">
+                <mat-icon matPrefix>lock</mat-icon>
+                <mat-label>Wachtwoord</mat-label>
+                <input matInput type="password" placeholder="" formControlName="passwdCtrl">
+            </mat-form-field><br>
+            <button mat-raised-button type="submit" (click)="login()">Inloggen</button>
+        </form>
         <div>
-            <a mat-button href="">Nog geen account? Registreer hier.</a>
+            <a mat-button (click)="registerInit()">Nog geen account? Registreer hier.</a>
         </div>
     </mat-card-content>
 </mat-card>

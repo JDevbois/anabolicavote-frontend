@@ -1,0 +1,10 @@
+<button mat-button [routerLink]="['..']">TERUG</button>
+<mat-card>
+    <mat-card-title>{{poll.title}}</mat-card-title>
+    <mat-card-content>
+        <mat-radio-group (change)="onChangeRadio($event)">
+            <mat-radio-button *ngFor="let candidate of poll.candidates" value="{{candidate.id}}">{{candidate.name}}</mat-radio-button>
+        </mat-radio-group><br>
+        <button mat-button (click)="vote()">BEVESTIGEN</button>
+    </mat-card-content>
+</mat-card>

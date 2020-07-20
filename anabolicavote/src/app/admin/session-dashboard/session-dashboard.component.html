@@ -1,0 +1,40 @@
+<button mat-button [routerLink]="../">TERUG</button>
+<mat-card>
+    <mat-card-title>
+        Nieuwe Ronde starten:
+    </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="pollFormGroup">
+            <mat-form-field appearance="outline">
+                <mat-icon matPrefix>title</mat-icon>
+                <mat-label>Rondenaam</mat-label>
+                <input matInput placeholder="FUNCTIE - Ronde XX" formControlName="titleCtrl">
+            </mat-form-field><br>
+            <mat-form-field appearance="outline">
+                <mat-icon matPrefix>person</mat-icon>
+                <mat-label>Voeg nieuwe kandidaat toe</mat-label>
+                <input matInput placeholder="Jos Extra" formControlName="candidateCtrl">
+            </mat-form-field><button mat-button (click)="addCandidate()">TOEVOEGEN</button><br>
+            <h3>Kandidaten:</h3>
+            <ul>
+                <li *ngFor="let candidate of candidates">{{candidate.name}}<button mat-button (click)="deleteCandidate(candidate)">X</button></li>
+            </ul>
+            <button mat-button (click)="createPoll()">RONDE STARTEN</button>
+        </form>
+    </mat-card-content>
+</mat-card>
+<br>
+<button mat-button (click)="refresh()">DATA REFRESHEN</button>
+<br><br>
+<mat-card *ngFor="let poll of polls">
+    <mat-card-title>Rondenaam: {{poll.title}}</mat-card-title>
+    <mat-card-content>
+        <h3>Kandidaten:</h3>
+        <ul>
+            <li *ngFor="let candidate of poll.candidates">{{candidate.name}}</li>
+        </ul>
+        <h3>Aantal stemmen uitgebracht:</h3>
+        <p>{{poll.votes.length}}/{{poll.maxVotes}}</p>
+        <button mat-button (click)="checkResults(poll.id)">RESULTATEN BEKIJKEN</button>
+    </mat-card-content>
+</mat-card>

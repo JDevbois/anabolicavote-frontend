@@ -1,0 +1,30 @@
+<mat-horizontal-stepper>
+    <mat-step [stepControl]="votersFormGroup">
+        <form [formGroup]="votersFormGroup">
+            <ng-template matStepLabel>Voeg e-mail adressen toe</ng-template>
+            <mat-form-field appearance="outline">
+              <mat-label>E-mail</mat-label>
+              <input matInput placeholder="allokes@hey.com" formControlName="firstCtrl" required>
+            </mat-form-field>
+            <button mat-button (click)="addContact()">Toevoegen</button>
+            <ul>
+              <li *ngFor="let contact of contacts">{{contact}} <button (click)="deleteContact(contact)" mat-button>Verwijderen</button></li>
+            </ul>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+    </mat-step>
+    <mat-step [stepControl]="confirmFormGroup">
+        <form [formGroup]="confirmFormGroup">
+            <ng-template matStepLabel>Bevestig e-mail adressen</ng-template>
+            <ul>
+              <li *ngFor="let contact of contacts">{{contact}} <button (click)="deleteContact(contact)" mat-button>Verwijderen</button></li>
+            </ul>
+            <div>
+              <button mat-button matStepperPrev>Terug</button>
+              <button mat-button matStepperNext (click)="confirm()">Bevestigen</button>
+            </div>
+          </form>
+    </mat-step>
+</mat-horizontal-stepper>
